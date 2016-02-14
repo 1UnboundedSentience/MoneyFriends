@@ -1,0 +1,9 @@
+
+.panel.login-panel { border:0; background: transparent; }
+.panel.login-panel .panel-logo { text-align: center; }
+.panel.login-panel .panel-logo img { max-width: 100%; }
+.panel.login-panel .panel-heading { border:0; }
+.panel.login-panel .panel-body { border:1px solid #ccc; border-radius: 4px; background: #fff; }
+
+.navbar .panel-logo {}
+.navbar .panel-logo img { height:32px; }
