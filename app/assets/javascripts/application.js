@@ -29,8 +29,8 @@ table = false;
 tableDom = false;
 
 var apiRoute = "https://prod-api.level-labs.com/api/v2/core/"
-$( document ).ready(function(){
-
+document.addEventListener('DOMContentLoaded', function() {
+  var sample = "im in line 32";
   $('#transactions').click(function(e) {
     $('#tableTitle').text("Transactions");
     $('#tableDescription').text("See your transactions");
