@@ -19,8 +19,12 @@ module MoneyFriends
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.react.jsx_transform_options = {
+      harmony: true,
+      strip_types: true, # for removing Flow type annotations
+      asset_path: "path/to/JSXTransformer.js", # if your JSXTransformer is somewhere else
+    }
+      # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
   end

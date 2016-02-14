@@ -1,4 +1,12 @@
 Rails.application.configure do
+  config.react.variant = :development
+  config.react.jsx_transformer_class = React::JSX::JSXTransformer
+  config.react.jsx_transform_options = {
+    harmony: true,
+    strip_types: true, # for removing Flow type annotations
+    asset_path: "path/to/JSXTransformer.js", # if your JSXTransformer is somewhere else
+  }
+  config.react.addons = true # defaults to false
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

@@ -39,6 +39,7 @@
     "flot.tooltip": "~0.8.4"
   },
   "resolutions": {
-    "datatables-plugins": "~1.0.1"
+    "datatables-plugins": "~1.0.1",
+    "metisMenu": "^2.4.0"
   }
 }
