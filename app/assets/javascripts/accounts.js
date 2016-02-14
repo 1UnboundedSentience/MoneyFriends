@@ -1,4 +1,3 @@
-$(document).ready(function() {
 
     var columns = [];
     columns.push({ title: 'Column' });
