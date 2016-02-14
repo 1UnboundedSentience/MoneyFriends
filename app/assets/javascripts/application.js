@@ -26,6 +26,7 @@
 
 
 table = false;
+tableDom = false;
 
 var apiRoute = "https://prod-api.level-labs.com/api/v2/core/"
 $( document ).ready(function(){
@@ -40,6 +41,18 @@ $( document ).ready(function(){
     $('#tableDescription').text("See your accounts");
     getAccounts();
   })
+  $('#projects').click(function(e) {
+    $('#tableTitle').text("Projects");
+    $('#tableDescription').text("See your projects");
+    projectTransactions();
+  })
+  $('#balances').click(function(e) {
+    $('#tableTitle').text("Balances");
+    $('#tableDescription').text("See your balances");
+    getHistoricalAndProjectedBalances();
+  })
+
+
 
   $('#bankSubmit').click(function(e) {
     //debugger
@@ -160,16 +173,20 @@ $( document ).ready(function(){
 
   var showTable = function(columns, datarows) {
     if (table == false) {
-      table = $('#table').DataTable({
-        data: datarows,
-        columns: columns,
-        //responsive: true
-      });
     } else {
       table.clear();
-      table.data(datarows);
-      table.draw();
+      table.destroy();
+      tableDom.remove();
     }
+
+    tableDom = $('#table').clone()
+    tableDom = $('#table').after(tableDom);
+    table = tableDom.DataTable({
+      data: datarows,
+      columns: columns,
+      //responsive: true
+    });
+
   }
 
   var projectTransactions = function() {
