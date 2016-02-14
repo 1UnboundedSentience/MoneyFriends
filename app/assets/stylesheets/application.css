@@ -13,5 +13,13 @@
  *= require_tree .
  *= require_self
  *= require bootstrap/dist/css/bootstrap
+ *= require moneyfriends.css
+ *= require sb-admin-2.css
+ *= require timeline.css
 
+ *= require datatables
+ *= require font-awesome
+ *= require metisMenu
+ *= require morrisjs
+ *= require datatables-responsive
  */

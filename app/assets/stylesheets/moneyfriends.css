@@ -1,0 +1,18 @@
+body { background: #f8f8f8 !important; }
+
+.alert { width: 50%; margin: 10% 25%; position: fixed; top:0; left:0; z-index: 999; }
+
+.panel.login-panel { border:0; background: transparent; }
+.panel.login-panel .panel-logo { text-align: center; }
+.panel.login-panel .panel-logo .icon { max-width: 100px; }
+.panel.login-panel .panel-logo img { max-width: 100%; }
+.panel.login-panel .panel-heading { border:0; }
+.panel.login-panel .panel-body { border:1px solid #ccc; border-radius: 4px; background: #fff; }
+.panel.login-panel .panel-links { text-align: center; }
+
+.navbar .panel-logo {}
+.navbar .navbar-brand { padding:10px; }
+.navbar .panel-logo img { height:32px; }
+
+#moneyfriends a { color:#6c6; }
+#moneyfriends a:hover { color:#3a3; }
