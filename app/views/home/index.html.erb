@@ -4,14 +4,12 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>MoneyFriends</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +39,19 @@
 </head>
 
 <body>
+  <% if user_signed_in? %>
+      Welcome:
+      <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>
+  <% else %>
+      <%= render 'devise/sessions/form' %>
+      <%= link_to "Login", new_user_session_path %>
+      <br>
+      <%= render 'devise/registrations/signup' %>
+      <%= link_to "Sign In", new_user_session_path %>
+  <% end %>
+<hr>
 
+<div id="outrpc28">json goes here</div>
     <div id="wrapper">
 
         <!-- Navigation -->
