@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'execjs'
+gem 'coffee-script-source', '1.8.0'
 gem 'react-rails', '~> 1.6.0'
 gem 'bower-rails', "~> 0.10.0"
 gem 'dotenv-rails', :groups => [:development, :test]
@@ -7,8 +9,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,6 +42,7 @@ gem "twitter-bootstrap-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -51,3 +53,6 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+ gem 'pg'
+end

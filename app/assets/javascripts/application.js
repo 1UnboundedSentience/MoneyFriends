@@ -47,7 +47,6 @@ $( document ).ready(function(){
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.onloadend = function() {
-        //debugger
         var parsed = JSON.parse(this.response);
         var userTransac = parsed['transactions'];
         //showTable(getColumns(userTransac), getData(userTransac));
