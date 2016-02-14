@@ -40,7 +40,6 @@ $( document ).ready(function(){
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.onloadend = function() {
-        //debugger
         var parsed = JSON.parse(this.response);
         var userTransac = parsed['transactions'];
         for(var i=0; i<userTransac.length; i++) {
@@ -55,7 +54,7 @@ $( document ).ready(function(){
         }
         //document.getElementById('outrpc28').textContent = pretty;
     };
-    xhr.onerror = function(err) {
+    xhr.onerror = function(err)
         //document.getElementById('outrpc28').textContent = "ugh an error. i can't handle this right now.";
         console.log("Error occured.");
     };
