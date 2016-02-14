@@ -77,7 +77,7 @@ $( document ).ready(function(){
             });
             //document.getElementById('outrpc28').textContent = pretty;
     };
-    xhr.onerror = function(err)
+    xhr.onerror = function(err) {
         //document.getElementById('outrpc28').textContent = "ugh an error. i can't handle this right now.";
         console.log("Error occured.");
     };

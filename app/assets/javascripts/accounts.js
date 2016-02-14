@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-
-
-
     var columns = [];
     columns.push({ title: 'Column' });
     columns.push({ title: 'Column' });
