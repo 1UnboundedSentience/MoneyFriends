@@ -28,9 +28,11 @@
 
 var apiRoute = "https://prod-api.level-labs.com/api/v2/core/"
 $( document ).ready(function(){
-  $('#start').click(function(e) {
-    //var transactionInfo = getAccounts();
-    var transactionInfo = getAllTransactions();
+  $('#transactions').ready(function(e) {
+    getAllTransactions();
+  })
+  $('#accounts').click(function(e) {
+    getAccounts();
   })
 
   $('#bankSubmit').click(function(e) {
@@ -47,35 +49,55 @@ $( document ).ready(function(){
     xhr.onloadend = function() {
         var parsed = JSON.parse(this.response);
         var userTransac = parsed['transactions'];
+        //showTable(getColumns(userTransac), getData(userTransac));
 
 
         var columns = [];
         var datarows = [];
+        var fixedColumns = [];
+        var fixedData = [];
+        fixedColumns = [
+          { name: 'amount', title:'Amount' },
+          //{ name: 'is-pending', title:'Status' },
+          { name: 'aggregation-time', title:'Time' },
+          //{ name: 'account-id', title:'Account' },
+          { name: 'transaction-id', title:'Transaction ID' },
+          { name: 'raw-merchant', title:'Merchant' }
+        ];
+
+
+
+
         for(var i=0; i<userTransac.length; i++) {
           var row = [];
+          var fixedRow = [];
+          for( column in fixedColumns) {
+            fixedRow.push (userTransac[i][fixedColumns[column].name]);
+          }
           for( property in userTransac[i] ) {
             if(i==0) {
               columns.push({ title: property });
             } else {
               row.push(userTransac[i][property]);
             }
-
-            //if(i==0) {
-              $('#bankInfo').last().after(property);
-            //}
-            // else {
-              $('#bankInfo').last().after(userTransac[i][property] + " ");
-            // }
           }
-          datarows.push(row);
+
+          if(i>0){
+            //fixedData.push(fixedRow);
+            fixedData.push([
+                userTransac[i]['amount'],
+                //userTransac[i]['is-pending'],
+                formatDate(userTransac[i]['aggregation-time']),
+                //userTransac[i]['account-id'],
+                userTransac[i]['transaction-id'],
+                userTransac[i]['raw-merchant']
+              ]
+            );
+            datarows.push(row);
+          }
         }
 
-            $('#transactions').DataTable({
-              data: datarows,
-              columns: columns,
-              responsive: true
-            });
-            //document.getElementById('outrpc28').textContent = pretty;
+        showTable(fixedColumns, fixedData);
     };
     xhr.onerror = function(err) {
         //document.getElementById('outrpc28').textContent = "ugh an error. i can't handle this right now.";
@@ -86,6 +108,56 @@ $( document ).ready(function(){
     xhr.send(JSON.stringify(args));
 
 
+  }
+
+  // FETCH ALL COLUMNS
+  var getColumns = function (data){
+    var columns = [];
+    for( property in data[0] ) {
+      columns.push({ title: property });
+    }
+    return columns;
+  }
+
+  // FETCH ALL DATA
+  var getData = function (data){
+    var datarows = [];
+    for(var i=0; i<data.length; i++) {
+      var row = [];
+      for( property in data[i] ) {
+        if(i>0) {
+          row.push(data[i][property]);
+        }
+      }
+      if(i>0){
+        datarows.push(row);
+      }
+    }
+    return datarows;
+  }
+
+  var formatAmount = function(amount){
+
+  }
+  var formatDate = function(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+
+  var showTable = function(columns, datarows) {
+    $('#transactions').DataTable({
+      data: datarows,
+      columns: columns,
+      //responsive: true
+    });
   }
 
   var projectTransactions = function() {
@@ -134,8 +206,13 @@ $( document ).ready(function(){
     xhr.onloadend = function() {
         var parsed = JSON.parse(this.response);
         var jsonResponse = JSON.stringify(parsed, null, 2);
+
+        var accounts = parsed['accounts'];
+        //showTable(getColumns(accounts), getData(accounts));
+
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;
+
     };
     xhr.onerror = function(err) {
         console.log("error occured");
