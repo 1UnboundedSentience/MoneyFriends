@@ -51,6 +51,11 @@ $( document ).ready(function(){
     $('#tableDescription').text("See your balances");
     getHistoricalAndProjectedBalances();
   })
+  $('#aggregate').click(function(e) {
+    $('#tableTitle').text("Aggregate");
+    $('#tableDescription').text("See your aggragation");
+    aggregateTransaction();
+  })
 
 
 
@@ -145,13 +150,9 @@ $( document ).ready(function(){
     for(var i=0; i<data.length; i++) {
       var row = [];
       for( property in data[i] ) {
-        if(i>0) {
           row.push(data[i][property]);
-        }
       }
-      if(i>0){
         datarows.push(row);
-      }
     }
     return datarows;
   }
@@ -199,6 +200,9 @@ $( document ).ready(function(){
         var parsed = JSON.parse(this.response);
         var jsonResponse = JSON.stringify(parsed, null, 2);
         console.log(jsonResponse);
+
+        var transactions = parsed['transactions'];
+        showTable(getColumns(transactions), getData(transactions));
         // document.getElementById('outrpc29').textContent = pretty;
     };
     xhr.onerror = function(err) {
@@ -219,6 +223,9 @@ $( document ).ready(function(){
         var jsonResponse = JSON.stringify(parsed, null, 2);
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;
+
+        var accounts = parsed['days'];
+        showTable(getColumns(accounts), getData(accounts));
     };
     xhr.onerror = function(err) {
         console.log("error occured");
@@ -262,6 +269,9 @@ $( document ).ready(function(){
         var jsonResponse = JSON.stringify(parsed, null, 2);
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;
+        var transactions = parsed['transactions'];
+        showTable(getColumns(transactions), getData(transactions));
+
     };
     xhr.onerror = function(err) {
         console.log("error occured");
