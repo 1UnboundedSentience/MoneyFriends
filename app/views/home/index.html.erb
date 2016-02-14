@@ -13,15 +13,16 @@
 
 </head>
 
-<body>
+<body id="moneyfriends">
   <% if user_signed_in? %>
-      Welcome:
-      <%= link_to "Logout", destroy_user_session_path, :method => 'delete' %>
       <%= render 'devise/app' %>
   <% else %>
       <%= render 'devise/sessions/form' %>
   <% end %>
 
 </body>
+<!-- Custom Theme JavaScript -->
+<script src="/js/sb-admin-2.js"></script>
+
 
 </html>

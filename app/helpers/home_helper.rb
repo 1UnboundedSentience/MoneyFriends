@@ -1,4 +1,16 @@
 module HomeHelper
+  def page?
+    return true if request.GET.first
+  end
+
+  def notice?
+    return true if notice
+  end
+
+  def alert?
+    return true if alert
+  end
+
   def resource_name
     :user
   end
