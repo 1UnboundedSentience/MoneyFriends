@@ -25,13 +25,19 @@
 //= require_tree .
 
 
+table = false;
 
 var apiRoute = "https://prod-api.level-labs.com/api/v2/core/"
 $( document ).ready(function(){
-  $('#transactions').ready(function(e) {
+
+  $('#transactions').click(function(e) {
+    $('#tableTitle').text("Transactions");
+    $('#tableDescription').text("See your transactions");
     getAllTransactions();
   })
   $('#accounts').click(function(e) {
+    $('#tableTitle').text("Accounts");
+    $('#tableDescription').text("See your accounts");
     getAccounts();
   })
 
@@ -154,11 +160,17 @@ $( document ).ready(function(){
   }
 
   var showTable = function(columns, datarows) {
-    $('#transactions').DataTable({
-      data: datarows,
-      columns: columns,
-      //responsive: true
-    });
+    if (table == false) {
+      table = $('#table').DataTable({
+        data: datarows,
+        columns: columns,
+        //responsive: true
+      });
+    } else {
+      table.clear();
+      table.data(datarows);
+      table.draw();
+    }
   }
 
   var projectTransactions = function() {
@@ -209,7 +221,7 @@ $( document ).ready(function(){
         var jsonResponse = JSON.stringify(parsed, null, 2);
 
         var accounts = parsed['accounts'];
-        //showTable(getColumns(accounts), getData(accounts));
+        showTable(getColumns(accounts), getData(accounts));
 
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;

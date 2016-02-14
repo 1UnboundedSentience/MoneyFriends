@@ -32,6 +32,8 @@
 
       <% if page? %>
         <%= render "devise/pages/#{request.GET.first.first}" %>
+      <% else %>
+      <%= render "devise/pages/table" %>        
       <% end %>
 
     </div>
