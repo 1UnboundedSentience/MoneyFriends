@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bower-rails', "~> 0.10.0"
+gem 'dotenv-rails', :groups => [:development, :test]
 #auth generation
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
