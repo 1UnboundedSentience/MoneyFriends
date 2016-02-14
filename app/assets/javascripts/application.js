@@ -14,11 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require morrisjs
-//= require metisMenu
-//= require datatables
-//= require datatables-responsive
-//= require flot
-//= require flot.tooltip
 //= require holderjs
 //= require react
 //= require react_ujs
