@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'coffee-script-source', '1.8.0'
+
 gem 'react-rails', '~> 1.6.0'
 gem 'bower-rails', "~> 0.10.0"
 gem 'dotenv-rails', :groups => [:development, :test]
