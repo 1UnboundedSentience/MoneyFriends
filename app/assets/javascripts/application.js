@@ -28,12 +28,17 @@
 
 var apiRoute = "https://prod-api.level-labs.com/api/v2/core/"
 $( document ).ready(function(){
+  $('#start').click(function(e) {
+    //var transactionInfo = getAccounts();
+    var transactionInfo = getAllTransactions();
+  })
+
   $('#bankSubmit').click(function(e) {
     //debugger
-    e.preventDefault();
     var transactionInfo = getAllTransactions();
     //debugger
   })
+
   var getAllTransactions = function() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://prod-api.level-labs.com/api/v2/core/get-all-transactions", true);
@@ -42,8 +47,19 @@ $( document ).ready(function(){
     xhr.onloadend = function() {
         var parsed = JSON.parse(this.response);
         var userTransac = parsed['transactions'];
+
+
+        var columns = [];
+        var datarows = [];
         for(var i=0; i<userTransac.length; i++) {
+          var row = [];
           for( property in userTransac[i] ) {
+            if(i==0) {
+              columns.push({ title: property });
+            } else {
+              row.push(userTransac[i][property]);
+            }
+
             //if(i==0) {
               $('#bankInfo').last().after(property);
             //}
@@ -51,8 +67,15 @@ $( document ).ready(function(){
               $('#bankInfo').last().after(userTransac[i][property] + " ");
             // }
           }
+          datarows.push(row);
         }
-        //document.getElementById('outrpc28').textContent = pretty;
+
+            $('#transactions').DataTable({
+              data: datarows,
+              columns: columns,
+              responsive: true
+            });
+            //document.getElementById('outrpc28').textContent = pretty;
     };
     xhr.onerror = function(err)
         //document.getElementById('outrpc28').textContent = "ugh an error. i can't handle this right now.";
@@ -61,6 +84,8 @@ $( document ).ready(function(){
 
     args = {"args": {"uid":  1110881160, "token":  "4A7C75C97619AAE75614834BBDE2DE2F", "api-token":  "HackathonAPITokenDevweek4222"}};
     xhr.send(JSON.stringify(args));
+
+
   }
 
   var projectTransactions = function() {
