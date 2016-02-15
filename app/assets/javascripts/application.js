@@ -14,26 +14,45 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require morrisjs
-//= require metisMenu
-//= require datatables
-//= require datatables-responsive
-//= require flot
-//= require flot.tooltip
 //= require holderjs
 //= require react
 //= require react_ujs
 //= require_tree .
 
 
+table = false;
+tableDom = false;
 
 var apiRoute = "https://prod-api.level-labs.com/api/v2/core/"
-$( document ).ready(function(){
-  $('#transactions').ready(function(e) {
+document.addEventListener('DOMContentLoaded', function() {
+  var sample = "im in line 32";
+  $('#transactions').click(function(e) {
+    $('#tableTitle').text("Transactions");
+    $('#tableDescription').text("See your transactions");
     getAllTransactions();
   })
   $('#accounts').click(function(e) {
+    $('#tableTitle').text("Accounts");
+    $('#tableDescription').text("See your accounts");
     getAccounts();
   })
+  $('#projects').click(function(e) {
+    $('#tableTitle').text("Projects");
+    $('#tableDescription').text("See your projects");
+    projectTransactions();
+  })
+  $('#balances').click(function(e) {
+    $('#tableTitle').text("Balances");
+    $('#tableDescription').text("See your balances");
+    getHistoricalAndProjectedBalances();
+  })
+  $('#aggregate').click(function(e) {
+    $('#tableTitle').text("Aggregate");
+    $('#tableDescription').text("See your aggragation");
+    aggregateTransaction();
+  })
+
+
 
   $('#bankSubmit').click(function(e) {
     //debugger
@@ -125,13 +144,9 @@ $( document ).ready(function(){
     for(var i=0; i<data.length; i++) {
       var row = [];
       for( property in data[i] ) {
-        if(i>0) {
           row.push(data[i][property]);
-        }
       }
-      if(i>0){
         datarows.push(row);
-      }
     }
     return datarows;
   }
@@ -153,11 +168,21 @@ $( document ).ready(function(){
   }
 
   var showTable = function(columns, datarows) {
-    $('#transactions').DataTable({
+    if (table == false) {
+    } else {
+      table.clear();
+      table.destroy();
+      tableDom.remove();
+    }
+
+    tableDom = $('#table').clone()
+    tableDom = $('#table').after(tableDom);
+    table = tableDom.DataTable({
       data: datarows,
       columns: columns,
       //responsive: true
     });
+
   }
 
   var projectTransactions = function() {
@@ -169,6 +194,9 @@ $( document ).ready(function(){
         var parsed = JSON.parse(this.response);
         var jsonResponse = JSON.stringify(parsed, null, 2);
         console.log(jsonResponse);
+
+        var transactions = parsed['transactions'];
+        showTable(getColumns(transactions), getData(transactions));
         // document.getElementById('outrpc29').textContent = pretty;
     };
     xhr.onerror = function(err) {
@@ -189,6 +217,9 @@ $( document ).ready(function(){
         var jsonResponse = JSON.stringify(parsed, null, 2);
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;
+
+        var accounts = parsed['days'];
+        showTable(getColumns(accounts), getData(accounts));
     };
     xhr.onerror = function(err) {
         console.log("error occured");
@@ -208,7 +239,7 @@ $( document ).ready(function(){
         var jsonResponse = JSON.stringify(parsed, null, 2);
 
         var accounts = parsed['accounts'];
-        //showTable(getColumns(accounts), getData(accounts));
+        showTable(getColumns(accounts), getData(accounts));
 
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;
@@ -232,6 +263,9 @@ $( document ).ready(function(){
         var jsonResponse = JSON.stringify(parsed, null, 2);
         console.log(jsonResponse);
         // document.getElementById('outrpc30').textContent = pretty;
+        var transactions = parsed['transactions'];
+        showTable(getColumns(transactions), getData(transactions));
+
     };
     xhr.onerror = function(err) {
         console.log("error occured");
