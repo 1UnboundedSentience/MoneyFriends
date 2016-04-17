@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     xhr.onerror = function(err) {
         //document.getElementById('outrpc28').textContent = "ugh an error. i can't handle this right now.";
-        console.log("Error occured.");
+        console.log("Error occurred.");
     };
 
     args = {"args": {"uid":  1110881160, "token":  "4A7C75C97619AAE75614834BBDE2DE2F", "api-token":  "HackathonAPITokenDevweek4222"}};
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // document.getElementById('outrpc29').textContent = pretty;
     };
     xhr.onerror = function(err) {
-        console.log("Error occured.");
+        console.log("Error occurred.");
         // document.getElementById('outrpc29').textContent = "ugh an error. i can't handle this right now.";
     };
     args = {"args": {"uid":  1110881160, "token":  "4A7C75C97619AAE75614834BBDE2DE2F", "api-token":  "HackathonAPITokenDevweek4222"}, "year":  2015, "month":  3};
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showTable(getColumns(accounts), getData(accounts));
     };
     xhr.onerror = function(err) {
-        console.log("error occured");
+        console.log("error occurred");
         // document.getElementById('outrpc30').textContent = "ugh an error. i can't handle this right now.";
     };
     args = {"args": {"uid":  1110881160, "token":  "4A7C75C97619AAE75614834BBDE2DE2F", "api-token":  "HackathonAPITokenDevweek4222"}};
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     };
     xhr.onerror = function(err) {
-        console.log("error occured");
+        console.log("error occurred");
         // document.getElementById('outrpc30').textContent = "ugh an error. i can't handle this right now.";
     };
     args = {"args": {"uid":  1110881160, "token":  "4A7C75C97619AAE75614834BBDE2DE2F", "api-token":  "HackathonAPITokenDevweek4222"}};
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     };
     xhr.onerror = function(err) {
-        console.log("error occured");
+        console.log("error occurred");
         // document.getElementById('outrpc30').textContent = "ugh an error. i can't handle this right now.";
     };
     args = {"args": {"uid":  1110881160, "token":  "4A7C75C97619AAE75614834BBDE2DE2F", "api-token":  "HackathonAPITokenDevweek4222"}};
