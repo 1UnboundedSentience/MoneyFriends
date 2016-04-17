@@ -1,7 +1,7 @@
 
 
  //
- // Colour customisation
+ // Color customisation
  //
 
 // Border between the header (and footer) and the table body
@@ -10,20 +10,20 @@ $table-header-border: 1px solid #111;
 // Border of rows / cells
 $table-body-border: 1px solid #ddd;
 
-// Row background colour (hover, striping etc are all based on this colour and
+// Row background color (hover, striping etc are all based on this color and
 // calculated automatically)
 $table-row-background: #ffffff;
 
-// Row colour, when selected (tr.selected)
+// Row color, when selected (tr.selected)
 $table-row-selected: #B0BED9;
 
-// Text colour of the interaction control elements (info, filter, paging etc)
+// Text color of the interaction control elements (info, filter, paging etc)
 $table-control-color: #333;
 
-// Highlight colour of the paging button for the current page
+// Highlight color of the paging button for the current page
 $table-paging-button-active: #dcdcdc;
 
-// Hover colour of paging buttons on mouse over
+// Hover color of paging buttons on mouse over
 $table-paging-button-hover: #111;
 
 

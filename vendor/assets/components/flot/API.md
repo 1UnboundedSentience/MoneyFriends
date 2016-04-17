@@ -856,7 +856,7 @@ colors: ["#d18b2c", "#dba255", "#919733"]
 ```
 
 If there are more data series than colors, Flot will try to generate
-extra colors by lightening and darkening colors in the theme.
+extra colors by lightning and darkening colors in the theme.
 
 
 ## Customizing the grid ##
